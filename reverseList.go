@@ -2,11 +2,6 @@ package main
 
 import "fmt"
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 /**
 翻转链表
 输入: 1->2->3->4->5->NULL

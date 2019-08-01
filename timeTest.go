@@ -71,6 +71,6 @@ func main() {
 	// ping client 启动
 	go ping()
 	// ping server 启动
-	go pong()//可以正常执行，使用go pong(),则会出现运行一会停止的情况，不退出也不打印日志
+	go pong() //可以正常执行，使用go pong(),则会出现运行一会停止的情况，不退出也不打印日志
 
 }

@@ -41,8 +41,8 @@ func FindMedianSortedArrays(nums1 []int, nums2 []int) (result float64) {
 		if i < end && nums2[j-1] > nums1[i] {
 			// i偏小，需要右移
 			start = i + 1
-		}else if i>start {
-			
+		} else if i > start {
+
 		}
 	}
 	return result

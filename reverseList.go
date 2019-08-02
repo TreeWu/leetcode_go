@@ -77,13 +77,7 @@ func FindMidNode(head *ListNode) *ListNode {
 	return low
 }
 
-func Println(head *ListNode) {
-	fmt.Print(head.Val)
-	if head.Next != nil {
-		fmt.Print(" -> ")
-		Println(head.Next)
-	}
-}
+
 
 func main() {
 	size := 6

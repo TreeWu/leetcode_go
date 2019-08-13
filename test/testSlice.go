@@ -1,18 +1,22 @@
-package test
+package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
-func init(){
-
-}
-
-func init()  {
-
+func appendSlice(slice **[]int) {
+	fmt.Println(slice)
+	tmp := append(**slice, (**slice)...)
+	t:=&tmp
+	slice =&t
+	fmt.Println(slice)
 }
 
 func main() {
-
-	arr:=make([]int,8)
-	fmt.Println(len(arr))
-	fmt.Printf("%v",arr)
+	slice := &[]int{1}
+	fmt.Println(slice)
+	appendSlice(&slice)
+	fmt.Println(slice)
+	panic()
 }

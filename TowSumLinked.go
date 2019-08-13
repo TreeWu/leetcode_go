@@ -1,9 +1,6 @@
 package main
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+
 
 func main() {
 
@@ -16,12 +13,12 @@ func AddTowNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	for l1 != nil || l2 != nil {
 		p, q, t := 0, 0, 0
 		if l1 != nil {
-			p = l1.Val
+			p = l1.Val.(int)
 			l1 = l1.Next
 		}
 
 		if l2 != nil {
-			q = l2.Val
+			q = l2.Val.(int)
 			l2 = l2.Next
 		}
 

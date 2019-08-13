@@ -1,22 +1,22 @@
-package test
+package main
 
 import "fmt"
 
-/*type Stu struct {
+type Stu struct {
 	Name string
 }
 
 func main() {
-	stus := make(map[string]*Stu)
-	s1 := &Stu{"tom"}
-	stus["tom"] = s1
-	s2 := stus["tom"]
-	s2.Name = "jar"
+	stus := new(map[string]Stu)
 
-	fmt.Printf("s1: %p    s2: %p \n", s1, &s2)
-	fmt.Printf("s1: %v   s2: %v", s1, s2)
+	fmt.Println(stus)
+	s1 := Stu{"tom"}
+	if v, ok := (*stus)["tom"]; !ok {   //new出来的map 可以取值，不过一直都是false
+		fmt.Println(v)
+	}
+	(*stus)["tom"] = s1 //new出来的map不能赋值
+
 }
-*/
 
 type query func(string) string
 
@@ -32,7 +32,7 @@ func exec(name string, vs ...query) string {
 	return <-ch
 }
 
-func main() {
+/*func main() {
 
 	ret := exec("111", func(n string) string {
 		return n + "func1"
@@ -44,4 +44,4 @@ func main() {
 		return n + "func4"
 	})
 	fmt.Println(ret)
-}
+}*/

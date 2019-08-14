@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"os"
 )
 
 type Student struct {
@@ -13,22 +15,35 @@ type Myint int
 
 type SecInt int
 
+
 func main() {
-	var i int
-	var mi Myint
-	var si SecInt
-	i = 3
-	mi = Myint(i)
-	si = SecInt(i)
-	mi = Myint(si)
-	si = SecInt(mi)
-	f(&Student{"TM", 2}) // 具体类型，通过隐形转换，成为interface
-	var b  []byte = nil
+	testNil()
+	/*	var i int
+		var mi Myint
+		var si SecInt
+		i = 3
+		mi = Myint(i)
+		si = SecInt(i)
+		mi = Myint(si)
+		si = SecInt(mi)
+		f(&Student{"TM", 2}) // 具体类型，通过隐形转换，成为interface
+		var b  []byte = nil
 
+		fmt.Println(len(b[0:]))
 
-	fmt.Println(len(b[0:]))
+	*/
 }
+func testNil()  {
+	var w io.Writer
 
+	w= os.Stdout
+	if w==nil {
+		fmt.Println("w == nil")
+	}else {
+		fmt.Println("w != nil")
+	}
+
+}
 func f(v interface{}) {
 	switch v.(type) {
 	case Student, *Student:

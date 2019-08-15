@@ -2,11 +2,53 @@ package main
 
 import (
 	"fmt"
-	"sync"
-	"time"
 )
 
-func testWaitGroup() {
+func main() {
+	chani := make(chan int, 11)
+	i := 0
+	for i < 10 {
+		chani <- i
+		i++
+	}
+
+	for ci := range chani {
+		fmt.Println(ci)
+	}
+
+	fmt.Println(len(chani))
+
+}
+
+/*func main() {
+	chani := make(chan int, 10)
+
+	get := func(index int) {
+		for {
+			select {
+			case i := <-chani:
+				fmt.Printf("%d -> %d \n", index, i)
+			}
+		}
+	}
+	put := func() {
+		i := 0
+		for {
+			chani <- i
+			i++
+			time.Sleep(time.Second)
+		}
+	}
+
+	go get(1)
+	go get(2)
+	go put()
+
+	select {}
+
+}*/
+
+/*func testWaitGroup() {
 	ch := make(chan int, 100)
 
 	group := sync.WaitGroup{}
@@ -60,10 +102,11 @@ func consumer(c <-chan int) {
 	}
 }
 func main() {
-	panic()
+
 	//ch := make(chan int)
 	ch := make(chan int, 10)
 	go produce(ch)
 	go consumer(ch)
 	time.Sleep(1 * time.Second)
 }
+*/

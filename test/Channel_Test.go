@@ -2,23 +2,63 @@ package main
 
 import (
 	"fmt"
+	"sync"
+	"time"
 )
 
 func main() {
 	chani := make(chan int, 11)
-	i := 0
-	for i < 10 {
-		chani <- i
-		i++
-	}
+	group := sync.WaitGroup{}
+	group.Add(2)
+	go func() {
 
-	for ci := range chani {
-		fmt.Println(ci)
-	}
+		i := 0
+		for i < 10 {
+			chani <- i
+			time.Sleep(time.Second)
+			i++
+		}
+		close(chani)
+		group.Done()
+	}()
 
-	fmt.Println(len(chani))
+	go func() {
+		for i := range chani {
+			fmt.Println(i)
+		}
+		group.Done()
+	}()
 
+	group.Wait()
 }
+
+/*func main() {
+	chani := make(chan int, 11)
+	i := 0
+
+	go func() {
+		for  {
+			chani <- i
+			i++
+		}
+	}()
+
+	go func() {
+		for ci := range chani {
+			fmt.Printf("len=%d,%d \n", len(chani), ci)
+
+		}
+	}()
+
+	for {
+
+		select {
+		case ci := <-chani:
+			fmt.Println(ci)
+		}
+	}
+
+}*/
 
 /*func main() {
 	chani := make(chan int, 10)

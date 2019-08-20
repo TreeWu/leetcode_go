@@ -1,37 +1,18 @@
 package main
 
-import (
-	"fmt"
-	"sync"
-	"time"
-)
-
+/*
 func main() {
 	chani := make(chan int, 11)
-	group := sync.WaitGroup{}
-	group.Add(2)
-	go func() {
 
-		i := 0
-		for i < 10 {
-			chani <- i
-			time.Sleep(time.Second)
-			i++
+	for   {
+		select {
+		case <-chani:
+		default:
+			fmt.Println("default")
 		}
-		close(chani)
-		group.Done()
-	}()
-
-	go func() {
-		for i := range chani {
-			fmt.Println(i)
-		}
-		group.Done()
-	}()
-
-	group.Wait()
+	}
 }
-
+*/
 /*func main() {
 	chani := make(chan int, 11)
 	i := 0

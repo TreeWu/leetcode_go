@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-
 )
 
 type ListNode struct {
@@ -55,4 +54,10 @@ func generateListNode(size int) *ListNode {
 		tmp = tmp.Next
 	}
 	return head
+}
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
 }

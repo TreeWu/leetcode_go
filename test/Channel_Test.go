@@ -1,8 +1,45 @@
 package main
 
-func main(){
+import "fmt"
 
+func main() {
+	i := 10
+	fmt.Printf("%p\n", &i)
+	fmt.Printf("%v\n", i)
+	j:=re(&i)
+
+	fmt.Printf("%p\n", j)
+	fmt.Printf("%v\n", j)
 }
+
+func re(i *int) *int {
+	return i
+}
+
+/*func main() {
+
+	c := make(chan *int)
+	group := sync.WaitGroup{}
+	go func() {
+		group.Add(1)
+		select {
+		case i := <-c:
+			fmt.Printf("%p\n", i)
+			*i = 12
+		}
+		group.Done()
+	}()
+
+	i := 10
+	c <- &i
+	fmt.Printf("%p\n", &i)
+	fmt.Printf("%v\n", i)
+	group.Wait()
+	fmt.Printf("%p\n", &i)
+	fmt.Printf("%v\n", i)
+}
+*/
+
 /*
 func main() {
 	chani := make(chan int, 11)

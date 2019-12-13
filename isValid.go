@@ -58,11 +58,8 @@ func isValid(s string) bool {
 		}
 
 	}
-	if stack.Size != 0 {
-		return false
-	}
 
-	return true
+	return stack.Size==0
 }
 
 func isValid2(s string) bool {

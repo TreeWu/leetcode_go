@@ -32,7 +32,6 @@ func invertTree(root *TreeNode) *TreeNode {
 }
 
 func main() {
-
 	root := &TreeNode{4, &TreeNode{2, &TreeNode{Val: 1}, &TreeNode{Val: 3}}, &TreeNode{7, &TreeNode{Val: 6}, &TreeNode{Val: 9}}}
 	invertTree(root)
 

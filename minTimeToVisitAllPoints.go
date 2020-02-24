@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 )
+
 /**
 平面上有 n 个点，点的位置用整数坐标表示 points[i] = [xi, yi]。请你计算访问所有这些点需要的最小时间（以秒为单位）。
 
@@ -25,12 +26,12 @@ import (
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/minimum-time-visiting-all-points
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- */
+*/
 
 /**
 解法，顺序递归求两点之间的距离
 因为只允许走直线或对角线，所以可以折叠为两点之间，X轴或Y轴的最大距离，即为两点之间最小距离。
- */
+*/
 func main() {
 	points := [][]int{{1, 1}, {3, 4}, {-1, 0}}
 	fmt.Println(minTimeToVisitAllPoints(points))
@@ -52,5 +53,5 @@ func minTimeToVisitPoints(a, b [2]int) int {
 }
 
 func maxAbs(a, b int) int {
-	return int(math.Max(math.Abs(float64(a)),math.Abs(float64(b))))
+	return int(math.Max(math.Abs(float64(a)), math.Abs(float64(b))))
 }

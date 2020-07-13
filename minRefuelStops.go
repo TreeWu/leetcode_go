@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"sort"
+)
+
 /**
 871. 最低加油次数
 难度
@@ -15,7 +20,7 @@ package main
 
 
 示例 1：
-输入：target = 1, startFuel = 1, stations = []
+输入：target = 1, startFuel = 1, stations = []才
 输出：0
 解释：我们可以在不加油的情况下到达目的地。
 
@@ -39,15 +44,32 @@ type H struct {
 	name string
 }
 
-func (h *H) String() string  {
-	return "this name"+h.name
+func (h *H) String() string {
+	return "this name" + h.name
 }
 
 func main() {
-
+	fmt.Println(minRefuelStops(100, 50, [][]int{{25, 25}, {50, 50}}))
 }
 
 func minRefuelStops(target int, startFuel int, stations [][]int) int {
-
-	return -1
+	stations = append(stations, []int{target, 0}) //把终点站也当做一个油站
+	result := 0
+	curTotal := startFuel //当前总油量
+	stock := make([]int, 0)
+	for _, s := range stations {
+		station := s
+		for curTotal < station[0] { //如果当前总油量 小于到达下一个加油点需要的油量
+			if len(stock) == 0 { //如果油储量为 0 那么不可到达
+				return -1
+			}
+			maxS := stock[len(stock)-1] //取存油量最多的点加油
+			stock = stock[:len(stock)-1]
+			curTotal += maxS
+			result++
+		}
+		stock = append(stock, station[1]) //能到到的加油站
+		sort.Ints(stock)                  //排序
+	}
+	return result
 }

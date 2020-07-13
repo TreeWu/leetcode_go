@@ -73,4 +73,6 @@ func main() {
 	arr := []int{1, 3, 6, 8, 3, 2, 6, 3}
 	QuickSort(arr, 0, len(arr)-1)
 	fmt.Println(arr)
+	var name string
+	fmt.Scanln(&name)
 }

@@ -16,7 +16,6 @@ func subtractProductAndSum(n int) int {
 		mul = mul * tmp
 	}
 	return mul - sum
-
 }
 func main() {
 	fmt.Println(subtractProductAndSum(234))

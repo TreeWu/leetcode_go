@@ -22,8 +22,7 @@ import "fmt"
 
 你不需要考虑数组中超出新长度后面的元素。
 
- */
-
+*/
 
 /**
 解法思路：
@@ -32,9 +31,9 @@ import "fmt"
 返回后面指针的长度
 */
 func removeDuplicates(nums []int) int {
-	i:=0
-	for j:=1;j<len(nums);j++{
-		if nums[i]!=nums[j] {
+	i := 0
+	for j := 1; j < len(nums); j++ {
+		if nums[i] != nums[j] {
 			nums[i+1] = nums[j]
 			i++
 		}
@@ -42,9 +41,9 @@ func removeDuplicates(nums []int) int {
 	return i
 }
 
-func main(){
+func main() {
 
-	arr:=[]int{1,1,2,2,3,3,4,4}
+	arr := []int{1, 1, 2, 2, 3, 3, 4, 4}
 
 	duplicates := removeDuplicates(arr)
 

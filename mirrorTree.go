@@ -41,24 +41,24 @@ func (q *Queue) len() int {
 	return q.size
 }
 func (q *Queue) poll() interface{} {
-	if q.len()==0 {
+	if q.len() == 0 {
 		return nil
 	}
-	v:=q.arrary[q.size-1]
-	q.arrary =q.arrary[:q.size-1]
+	v := q.arrary[q.size-1]
+	q.arrary = q.arrary[:q.size-1]
 	q.size--
 	return v
 }
 
 func main() {
 
-	i :=[]int{1,2,3,4}
+	i := []int{1, 2, 3, 4}
 
-	len :=4
+	len := 4
 
 	fmt.Println(i[len-1])
 
-	i=i[:len-1]
+	i = i[:len-1]
 
 	fmt.Println(i)
 
@@ -87,18 +87,18 @@ func isMirror(t1, t2 *TreeNode) bool {
 */
 
 func isMirrorArray(root *TreeNode) bool {
-	q:=Queue{}
+	q := Queue{}
 	q.push(root)
 	q.push(root)
 
-	for q.len()!=0 {
-		t1 :=q.poll().(*TreeNode)
-		t2 :=q.poll().(*TreeNode)
+	for q.len() != 0 {
+		t1 := q.poll().(*TreeNode)
+		t2 := q.poll().(*TreeNode)
 
-		if t1 ==nil && t2==nil { //都为空
+		if t1 == nil && t2 == nil { //都为空
 			continue
 		}
-		if t1!=nil && t2!=nil { //都不为空
+		if t1 != nil && t2 != nil { //都不为空
 			if t1.Val != t2.Val { // 值相等
 				return false
 			}
@@ -106,9 +106,9 @@ func isMirrorArray(root *TreeNode) bool {
 			q.push(t2.Right)
 			q.push(t1.Right)
 			q.push(t2.Left)
-			continue     //下一轮遍历
+			continue //下一轮遍历
 		}
-		return false   //一个为空，一个不为空
+		return false //一个为空，一个不为空
 	}
 	return true
 

@@ -77,8 +77,6 @@ func FindMidNode(head *ListNode) *ListNode {
 	return low
 }
 
-
-
 func main() {
 	size := 6
 	head := &ListNode{0, nil}

@@ -59,7 +59,7 @@ func isValid(s string) bool {
 
 	}
 
-	return stack.Size==0
+	return stack.Size == 0
 }
 
 func isValid2(s string) bool {
@@ -85,12 +85,12 @@ func isValid2(s string) bool {
 			} else {
 				return false
 			}
-		}else {
-			m[s1]=m[s1]+1
+		} else {
+			m[s1] = m[s1] + 1
 		}
 	}
-	for _,value := range m {
-		if value !=0 {
+	for _, value := range m {
+		if value != 0 {
 			return false
 		}
 	}

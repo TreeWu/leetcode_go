@@ -41,19 +41,18 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 
 //一趟扫描
 func removeNthFromEnd2(head *ListNode, n int) *ListNode {
-	dmmy:=&ListNode{0,head} // 建立一个辅助接点，处理当 n 等于链表长度的情况
+	dmmy := &ListNode{0, head} // 建立一个辅助接点，处理当 n 等于链表长度的情况
 	low, fast := dmmy, dmmy
 
-
-	for n>0 {
+	for n > 0 {
 		fast = fast.Next
-		n --
+		n--
 	}
-	for fast!=nil  {
-		fast=fast.Next
-		low=low.Next
+	for fast != nil {
+		fast = fast.Next
+		low = low.Next
 	}
-	low.Next=low.Next.Next
+	low.Next = low.Next.Next
 	return dmmy.Next
 }
 

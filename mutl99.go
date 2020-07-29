@@ -9,7 +9,7 @@ func main() {
 	for j <= 9 {
 		i := 1
 		for i <= j {
-			fmt.Printf("%d ",i * j)
+			fmt.Printf("%d ", i*j)
 			i++
 		}
 		fmt.Println()

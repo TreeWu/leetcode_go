@@ -6,8 +6,6 @@ func trap(height []int) int {
 		index := index
 		value := value
 
-
-
 		if height[index] > height[maxIndex] {
 			maxIndex = index
 		}

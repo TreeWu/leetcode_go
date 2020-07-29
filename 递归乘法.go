@@ -18,14 +18,14 @@ package main
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/recursive-mulitply-lcci
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- */
+*/
 
 func main() {
 
 }
 func multiply(A int, B int) int {
-	if A == 0 || B ==0{
+	if A == 0 || B == 0 {
 		return 0
 	}
-	return A + multiply(A,B-1)
+	return A + multiply(A, B-1)
 }

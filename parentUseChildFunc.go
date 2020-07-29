@@ -10,7 +10,6 @@ func main() {
 	var name Name = &Child{}
 	fmt.Println(name.Name())
 
-
 }
 
 type Name interface {

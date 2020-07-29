@@ -16,11 +16,11 @@ import (
 进阶:
 
 如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的分治法求解。
- */
+*/
 /**
 连续的子数组，需要遍历求和
 我们假设前面的和是正的，
- */
+*/
 func MaxSubArray(nums []int) int {
 	ans := nums[0]
 	sum := nums[0]

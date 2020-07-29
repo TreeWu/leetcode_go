@@ -25,15 +25,15 @@ import "fmt"
 注意这五个元素可为任意顺序。
 
 你不需要考虑数组中超出新长度后面的元素。
- */
+*/
 
 /**
 双指针，快指针遍历数组，慢指针在快指针元素不等于 查找  元素时，更新
- */
+*/
 func removeElement(nums []int, val int) int {
 	i := 0
-	for j,_:=range nums{
-		if nums[j] !=val {
+	for j, _ := range nums {
+		if nums[j] != val {
 			nums[i] = nums[j]
 			i++
 		}
@@ -42,7 +42,7 @@ func removeElement(nums []int, val int) int {
 }
 
 func main() {
-	arr := []int{3, 2, 2,3,5, 3}
+	arr := []int{3, 2, 2, 3, 5, 3}
 
 	element := removeElement(arr, 3)
 

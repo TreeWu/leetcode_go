@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	//grid := [][]int{{4, 3, 2, -1}, {3, 2, 1, -1}, {1, 1, -1, -2}, {-1, -1, -2, -3}}
-	grid := [][]int{{5,1,0},{-5,-5,-5}}
+	grid := [][]int{{5, 1, 0}, {-5, -5, -5}}
 	fmt.Println(countNegatives(grid))
 }
 

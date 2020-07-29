@@ -3,7 +3,7 @@ package main
 /**
 给定一个字符串，逐个翻转字符串中的每个单词。
 
- 
+
 
 示例 1：
 
@@ -19,7 +19,7 @@ package main
 输入: "a good   example"
 输出: "example good a"
 解释: 如果两个单词间有多余的空格，将反转后单词间的空格减少到只含一个。
- 
+
 
 说明：
 
@@ -30,9 +30,7 @@ package main
 func reverseWords(s string) string {
 	result := []byte{}
 	preBlank := true
-	ss :=[]byte(s)
-
-
+	ss := []byte(s)
 
 	return string(result)
 }

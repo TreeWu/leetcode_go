@@ -11,13 +11,13 @@ func sumNums(n int) int {
 
 	var ans int
 
-	type Sum func(a int) bool
+	var sum func(a int) bool
 
-		sum  = func(a int) bool {
+	sum = func(a int) bool {
 
 		ans += a
 
-		return a > 1
+		return a > 1 && sum(a-1)
 	}
 	sum(n)
 	return ans

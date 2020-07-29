@@ -9,7 +9,7 @@ import "sort"
 
 如果你能让 arr 变得与 target 相同，返回 True；否则，返回 False 。
 
- 
+
 
 示例 1：
 
@@ -38,7 +38,7 @@ import "sort"
 
 输入：target = [1,1,1,1,1], arr = [1,1,1,1,1]
 输出：true
- 
+
 
 提示：
 

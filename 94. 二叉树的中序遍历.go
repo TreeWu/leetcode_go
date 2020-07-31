@@ -20,16 +20,16 @@ func main() {
 		for len(stack) != 0 {
 			cur := stack[len(stack)-1]
 			for cur.Left != nil {
-				stack = append(stack, cur.Left)
+				stack = append(stack, cur)
 				cur = cur.Left
 			}
 			result = append(result, cur.Val)
 			stack = stack[:len(stack)-1]
 			if cur.Right != nil {
-				stack = append(stack, cur.Right)
+			stack = append(stack, cur.Right)
 			}
-		}
 
+		}
 		return result
 	}
 	traversal := inorderTraversal(root)

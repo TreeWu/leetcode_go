@@ -22,7 +22,7 @@ import "fmt"
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 func main() {
-	fmt.Println(integerBreak(8))
+	fmt.Println(integerBreak3(100))
 }
 
 func integerBreak(n int) int {
@@ -38,6 +38,43 @@ func integerBreak(n int) int {
 	return dp[n]
 
 }
+
+/**
+动态规划
+假设 n 可以拆分为 x + （n-x） ,那么分别求  x ,（n-x） 拆分整数后最大乘积就行
+因为 0 ，1 的明显是没收益或者零收益的，所以  x 从 2 开始遍历
+
+*/
+func integerBreak2(n int) int {
+	dp := make([]int, n+1)
+
+	for i := 2; i <= n; i++ {
+		curMax := 0
+		for j := 1; j < i; j++ {
+			curMax = max(curMax, max(i*(i-j), i*dp[i-j]))
+		}
+		dp[i] = curMax
+	}
+	return dp[n]
+}
+
+/**
+动态规划 递归
+*/
+func integerBreak3(n int) int {
+	if n < 0 {
+		return 0
+	}
+	if n <= 2 {
+		return 1
+	}
+	curMax := 0
+	for i := 2; i < n; i++ {
+		curMax = max(curMax, max(i*(n-i), i*integerBreak3(n-i)))
+	}
+	return curMax
+}
+
 func max(x, y int) int {
 	if x > y {
 		return x

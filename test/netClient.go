@@ -14,6 +14,7 @@ func main() {
 		fmt.Println(e)
 	}
 	defer conn.Close()
+
 	mustCopy(os.Stdout, conn)
 }
 

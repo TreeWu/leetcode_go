@@ -3,11 +3,15 @@ package main
 import "fmt"
 
 func main() {
+	/*	is := []int{1,2}
+		is = is[:len(is)-1]
+		fmt.Println(is)*/
 	type TreeNode struct {
 		Val   int
 		Left  *TreeNode
 		Right *TreeNode
 	}
+
 	root := &TreeNode{Val: 1, Right: &TreeNode{Val: 2, Left: &TreeNode{Val: 3}}}
 
 	inorderTraversal := func(root *TreeNode) []int {
@@ -16,24 +20,21 @@ func main() {
 			return result
 		}
 		var stack []*TreeNode
-		stack = append(stack, root)
-		for len(stack) != 0 {
-			cur := stack[len(stack)-1]
-			for cur.Left != nil {
+		cur := root
+		for cur != nil || len(stack) != 0 {
+			for cur != nil {
 				stack = append(stack, cur)
 				cur = cur.Left
 			}
-			result = append(result, cur.Val)
+			cur = stack[len(stack)-1]
 			stack = stack[:len(stack)-1]
-			if cur.Right != nil {
-			stack = append(stack, cur.Right)
-			}
-
+			result = append(result, cur.Val)
+			cur = cur.Right
 		}
 		return result
 	}
-	traversal := inorderTraversal(root)
-	fmt.Println(traversal)
+	res := inorderTraversal(root)
+	fmt.Println(res)
 }
 
 /**
@@ -50,26 +51,4 @@ func main() {
 
 输出: [1,3,2]
 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
-*/
-/*func inorderTraversal(root *TreeNode) []int {
-	var result []int
-	if root == nil {
-		return result
-	}
-	var stack []*TreeNode
-	stack = append(stack, root)
-	for len(stack) != 0 {
-		cur := stack[len(stack)-1]
-		stack = stack[:len(stack)-2]
-		result = append(result, cur.Val)
-		if cur.Right != nil {
-			stack = append(stack, cur.Right)
-		}
-		if cur.Left != nil {
-			stack = append(stack, cur.Left)
-		}
-	}
-
-	return result
-}
 */

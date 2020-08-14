@@ -38,7 +38,7 @@ import "fmt"
 因为 6 减 1 前面所有的数，但是比5 小的
 */
 func main() {
-	fmt.Println(maxProfit([]int{7, 6, 4, 3, 1}))
+	fmt.Println(maxProfit2([]int{7, 6, 4, 3, 1}))
 }
 func maxProfit(prices []int) int {
 	if len(prices) < 1 {
@@ -49,7 +49,6 @@ func maxProfit(prices []int) int {
 	for right < len(prices) {
 		if prices[right] < prices[left] {
 			left = right
-
 		} else {
 			if prices[right]-prices[left] > result {
 				result = prices[right] - prices[left]
@@ -58,4 +57,33 @@ func maxProfit(prices []int) int {
 		right++
 	}
 	return result
+}
+
+/**
+动态规划， 到 i 日的最大利润，等于  i-1 日的最大利润 和 当前股票价值减去之前最低价格  的最大值
+即  dp[i] = max（ dp[i-1] ， prices[i]-min(prices[:i]))
+*/
+
+func maxProfit2(prices []int) int {
+	if len(prices) < 1 {
+		return 0
+	}
+
+	max := func(x, y int) int {
+		if x > y {
+			return x
+		}
+		return y
+	}
+
+	ans := 0
+	min := prices[0]
+	for index := 0; index < len(prices); index++ {
+		if prices[index] < min {
+			min = prices[index]
+		}
+		ans = max(ans, prices[index]-min)
+	}
+
+	return ans
 }

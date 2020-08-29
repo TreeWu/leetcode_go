@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /**
 529. 扫雷游戏
@@ -67,15 +69,6 @@ Click : [1,2]
 */
 func main() {
 
-	printBoard := func(board [][]byte) {
-		for row := range board {
-			for col := range board[row] {
-				fmt.Printf("%s ", string(board[row][col]))
-			}
-			fmt.Println()
-		}
-	}
-
 	board := [][]byte{
 		{'E', 'E', 'E', 'E', 'E'},
 		{'E', 'E', 'M', 'E', 'E'},
@@ -88,49 +81,44 @@ func main() {
 	printBoard(board)
 
 }
+
+func printBoard(board [][]byte) {
+	for row := range board {
+		for col := range board[row] {
+			fmt.Printf("%s ", string(board[row][col]))
+		}
+		fmt.Println()
+	}
+}
 func updateBoard(board [][]byte, click []int) [][]byte {
+	xs := []int{0, 0, -1, -1, 1, 1, 1, -1}
+	ys := []int{1, -1, 1, -1, 1, -1, 0, 0}
+
 	row, col := len(board), len(board[0])
-
-	var dfs func(board [][]byte, x, y int) bool
-	dfs = func(board [][]byte, x, y int) bool {
-		if x < 0 || x > col-1 || y < 0 || y > row-1 {
-			return false
+	var dfs func(board [][]byte, x, y int)
+	dfs = func(board [][]byte, x, y int) {
+		if x < 0 || x > col-1 || y < 0 || y > row-1 || board[y][x] != 'E' {
+			return
 		}
-		if board[y][x] == 'M' {
-			return true
-		}
-		cnt := 0
-		if board[y][x] == 'E' {
-			if dfs(board, x, y-1) {
-				cnt++
-			}
-			if dfs(board, x, y+1) {
-				cnt++
-			}
-			if dfs(board, x-1, y-1) {
-				cnt++
-			}
-			if dfs(board, x-1, y+1) {
-				cnt++
-			}
+		var cnt byte = '0'
+		for i := 0; i < len(xs); i++ {
 
-			if dfs(board, x+1, y-1) {
-				cnt++
+			if x+xs[i] < 0 || x+xs[i] > col-1 || y+ys[i] < 0 || y+ys[i] > row-1 {
+				continue
 			}
-			if dfs(board, x+1, y+1) {
-				cnt++
-			}
-
-			if dfs(board, x+1, y) {
-				cnt++
-			}
-
-			if dfs(board, x-1, y) {
+			if board[y+ys[i]][x+xs[i]] == 'M' {
 				cnt++
 			}
 		}
-		board[y][x] = byte(cnt)
-		return false
+		if cnt == '0' {
+			board[y][x] = 'B'
+			for i := 0; i < len(xs); i++ {
+				dfs(board, x+xs[i], y+ys[i])
+			}
+		} else {
+			board[y][x] = cnt
+		}
+
 	}
 
 	if board[click[0]][click[1]] == 'M' {

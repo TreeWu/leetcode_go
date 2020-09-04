@@ -16,13 +16,14 @@ import (
 */
 func main() {
 
-	fmt.Println(isNumber("12e+5.4"))
+/*	fmt.Println(isNumber("12e+5.4"))
 	fmt.Println(isNumber("-1E-16"))
 	fmt.Println(isNumber("1.2.3"))
 	fmt.Println(isNumber("1a3.14"))
 	fmt.Println(isNumber("12e"))
 	fmt.Println(isNumber("1 "))
-	fmt.Println(isNumber("  "))
+	fmt.Println(isNumber("  "))*/
+	fmt.Println(isNumber(".1"))
 
 }
 func isNumber(s string) bool {
@@ -45,7 +46,7 @@ func isNumber(s string) bool {
 			}
 			hasE = true
 		case '.':
-			if hasPoint { // 两个 点，
+			if hasPoint ||  i == len(runes)-1  { // 两个 点，
 				return false
 			}
 			hasPoint = true

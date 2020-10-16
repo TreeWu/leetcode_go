@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /**
 插入排序
@@ -67,6 +69,15 @@ func Index(arr []int, left, right int) int {
 	}
 	arr[low], arr[left] = arr[left], arr[low]
 	return low
+}
+
+func margeSort(arr []int, left, right int) {
+	if left < right {
+		mid := (left + right) >> 1
+		margeSort(arr, left, mid)
+		margeSort(arr, mid, right)
+	}
+
 }
 
 func main() {

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 )
 
@@ -14,9 +13,19 @@ func appendSlice(slice **[]int) {
 }
 
 func main() {
-	slice := &[]int{1}
-	fmt.Println(slice)
-	appendSlice(&slice)
-	fmt.Println(slice)
-	panic()
+	var arr [100]int
+
+	a1:=arr[90:]
+	a2:=arr[:10]
+
+	fmt.Printf("%d , %d \n",len(a1),cap(a1))
+	fmt.Printf("%d , %d \n",len(a2),cap(a2))
+
+
+	a1=append(a1,1)
+	fmt.Printf("%d , %d \n",len(a1),cap(a1))
+
+
+	a2=append(a2,2)
+	fmt.Printf("%d , %d \n",len(a2),cap(a2))
 }

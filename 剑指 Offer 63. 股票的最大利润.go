@@ -40,7 +40,7 @@ import "fmt"
 func main() {
 	fmt.Println(maxProfit2([]int{7, 6, 4, 3, 1}))
 }
-func maxProfit(prices []int) int {
+func maxProfit0(prices []int) int {
 	if len(prices) < 1 {
 		return 0
 	}

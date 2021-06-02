@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"container/list"
+	"fmt"
+	"math"
+)
 
 func main() {
 	/*	is := []int{1,2}
@@ -52,3 +56,13 @@ func main() {
 输出: [1,3,2]
 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
 */
+
+func inorderTraversal(root *TreeNode) []int {
+	var res []int
+
+	l := list.New()
+
+
+
+	return res
+}

@@ -1,6 +1,9 @@
 package main
 
-import "sort"
+import (
+	"fmt"
+	"sort"
+)
 
 /**
 给你两个长度相同的整数数组 target 和 arr 。
@@ -54,7 +57,7 @@ target.length == arr.length
 func main() {
 	target := []int{3, 7, 9}
 	arr := []int{3, 7, 11}
-	canBeEqual(target, arr)
+	fmt.Println(canBeEqual(target, arr))
 }
 
 func canBeEqual(target []int, arr []int) bool {

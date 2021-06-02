@@ -79,6 +79,30 @@ func main() {
 		return result
 	}
 
+	levelOrder = func(root *TreeNode) []int {
+		var result []int
+
+		if root != nil {
+			return result
+		}
+		stock := list.New()
+		stock.PushBack(root)
+		for stock.Front() != nil {
+			front := stock.Front()
+			stock.Remove(front)
+			node := front.Value.(*TreeNode)
+			result = append(result, node.Val)
+			if node.Left!=nil {
+				stock.PushBack(node.Left)
+			}
+			if node.Right!=nil {
+				stock.PushBack(node.Right)
+			}
+		}
+
+		return result
+	}
+
 	fmt.Println(levelOrder(&TreeNode{Val: 1, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 4}, Right: &TreeNode{Val: 5}}, Right: &TreeNode{Val: 3}}))
 
 }

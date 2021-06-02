@@ -4,42 +4,55 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"time"
 )
 
+type Test interface {
+	test1() int
+	test2() int
+}
 type Student struct {
 	Name string
 	sex  int
 }
 
-type Myint int
-
-type SecInt int
-
-
-func main() {
-	testNil()
-	/*	var i int
-		var mi Myint
-		var si SecInt
-		i = 3
-		mi = Myint(i)
-		si = SecInt(i)
-		mi = Myint(si)
-		si = SecInt(mi)
-		f(&Student{"TM", 2}) // 具体类型，通过隐形转换，成为interface
-		var b  []byte = nil
-
-		fmt.Println(len(b[0:]))
-
-	*/
+func (s Student) test1() int {
+	return 1
 }
-func testNil()  {
+func (s *Student) test2() int {
+	return 2
+}
+func main() {
+	c := make(chan int)
+	go func() {
+		for i := 0; i < 100; i++ {
+			c <- i
+		}
+		close(c)
+	}()
+	ticker := time.NewTicker(time.Second)
+loop:
+	for {
+		select {
+		case _, ok := <-c:
+			if !ok {
+				break loop
+			}
+		case <-ticker.C:
+			fmt.Println("Second")
+		}
+	}
+	fmt.Println("end")
+
+}
+
+func testNil() {
 	var w io.Writer
 
-	w= os.Stdout
-	if w==nil {
+	w = os.Stdout
+	if w == nil {
 		fmt.Println("w == nil")
-	}else {
+	} else {
 		fmt.Println("w != nil")
 	}
 

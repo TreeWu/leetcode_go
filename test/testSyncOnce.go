@@ -7,9 +7,7 @@ var Content map[string]string
 
 func Load(key string) string {
 
-	if Content == nil {
-		initContent()
-	}
+	loadOnce.Do(initContent)
 	return Content[key]
 }
 

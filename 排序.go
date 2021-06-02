@@ -77,7 +77,6 @@ func margeSort(arr []int, left, right int) {
 		margeSort(arr, left, mid)
 		margeSort(arr, mid, right)
 	}
-
 }
 
 func main() {

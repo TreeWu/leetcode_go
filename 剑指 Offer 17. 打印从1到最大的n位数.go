@@ -24,7 +24,7 @@ n 为正整数
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 func main() {
-	fmt.Println(printNumbers(1))
+	fmt.Println(printNumbers(3))
 }
 
 func printNumbers(n int) []int {
@@ -34,6 +34,5 @@ func printNumbers(n int) []int {
 		max--
 		ans[max-1] = max
 	}
-
 	return ans
 }

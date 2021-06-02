@@ -29,8 +29,8 @@ package main
 节点总数 <= 10000
 */
 func main() {
-
-	pathSum := func(root *TreeNode, sum int) [][]int {
+	var pathSum func(root *TreeNode, sum int) [][]int
+	pathSum = func(root *TreeNode, sum int) [][]int {
 		var res [][]int
 		var dsf func(root *TreeNode, sum int, arr []int)
 		dsf = func(root *TreeNode, sum int, arr []int) {
@@ -49,8 +49,12 @@ func main() {
 			}
 		}
 		dsf(root, sum, nil)
-
 		return res
+	}
+
+	pathSum = func(root *TreeNode, sum int) [][]int {
+		var res [][]int
+
 	}
 
 }

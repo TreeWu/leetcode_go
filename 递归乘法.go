@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /**
 递归乘法。 写一个递归函数，不使用 * 运算符， 实现两个正整数的相乘。可以使用加号、减号、位移，但要吝啬一些。
 
@@ -21,7 +23,7 @@ package main
 */
 
 func main() {
-
+	fmt.Println(multiply(3, 4))
 }
 func multiply(A int, B int) int {
 	if A == 0 || B == 0 {

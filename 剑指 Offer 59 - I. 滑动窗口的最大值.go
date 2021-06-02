@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /**
 给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。
@@ -34,6 +36,8 @@ func main() {
 	fmt.Println(maxSlidingWindow([]int{3, 1, 2}, 2))
 }
 
+
+
 /**
 根据 最开始的窗口 初始化最大值指针，在窗口右移时，判断
  */
@@ -41,6 +45,7 @@ func maxSlidingWindow(nums []int, k int) []int {
 	numLen := len(nums) - k
 	var result = make([]int, numLen+1)
 
+	// 查找窗口中最大值的下标
 	maxIndex := func(ns []int, begin, end int) int {
 		curMaxIndex := begin
 		for i := begin; i <= end; i++ {
@@ -56,11 +61,12 @@ func maxSlidingWindow(nums []int, k int) []int {
 	for left := 0; left <= numLen; left++ {
 		right := left + k - 1
 
-
+		//如果滑动过程中，入数比当前最大下边大
 		if nums[curMaxIndex] <= nums[right] {
 			curMaxIndex = right
 		}
 
+		//如果滑动过程中，最大值下标已经不处于窗口内，那么重新查找最大值下标
 		if curMaxIndex < left {
 			curMaxIndex = maxIndex(nums, left, right)
 		}

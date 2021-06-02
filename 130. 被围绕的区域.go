@@ -67,7 +67,7 @@ func solve(board [][]byte) {
 			dsf(board, x-1, y)
 			dsf(board, x+1, y)
 		}
-	}
+	} 
 	for i := 0; i < row; i++ {
 		dsf(board, 0, i)
 		dsf(board, column-1, i)

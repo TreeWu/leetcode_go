@@ -4,28 +4,26 @@ import (
 	"fmt"
 )
 
+type Q struct {
+	name string
+}
+
 func appendSlice(slice **[]int) {
 	fmt.Println(slice)
 	tmp := append(**slice, (**slice)...)
-	t:=&tmp
-	slice =&t
+	t := &tmp
+	slice = &t
 	fmt.Println(slice)
 }
 
 func main() {
-	var arr [100]int
+	qs := []Q{{name: "1"}, {name: "2"}, {name: "3"}}
+	fmt.Println(qs)
+	for i := range qs {
+		q := qs[i]
+		q.name = q.name + "f"
+		qs[i] = q
+	}
+	fmt.Println(qs)
 
-	a1:=arr[90:]
-	a2:=arr[:10]
-
-	fmt.Printf("%d , %d \n",len(a1),cap(a1))
-	fmt.Printf("%d , %d \n",len(a2),cap(a2))
-
-
-	a1=append(a1,1)
-	fmt.Printf("%d , %d \n",len(a1),cap(a1))
-
-
-	a2=append(a2,2)
-	fmt.Printf("%d , %d \n",len(a2),cap(a2))
 }

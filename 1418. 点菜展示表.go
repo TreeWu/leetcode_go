@@ -46,5 +46,5 @@ tableNumberi 是 1 到 500 范围内的整数。
 */
 //这类题目类似于格式装换
 func displayTable(orders [][]string) [][]string {
-
+	return nil
 }

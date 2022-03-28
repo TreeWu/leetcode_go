@@ -2,12 +2,7 @@ package main
 
 import (
 	"math"
-	"leetcode_go/base"
 )
-
-func main() {
-	name := common.Name
-}
 
 func longestCommonPrefix(strs []string) string {
 

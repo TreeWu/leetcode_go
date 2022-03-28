@@ -75,14 +75,14 @@ func main() {
 		{'E', 'E', 'E', 'E', 'E'},
 		{'E', 'E', 'E', 'E', 'E'},
 	}
-	printBoard(board)
+	TprintBoard(board)
 	fmt.Println()
 	updateBoard(board, []int{0, 0})
-	printBoard(board)
+	TprintBoard(board)
 
 }
 
-func printBoard(board [][]byte) {
+func TprintBoard(board [][]byte) {
 	for row := range board {
 		for col := range board[row] {
 			fmt.Printf("%s ", string(board[row][col]))

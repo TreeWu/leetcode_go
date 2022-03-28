@@ -13,7 +13,7 @@ n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，�
 
 每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。
 
- 
+
 
 示例：
 
@@ -30,7 +30,7 @@ n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，�
   ".Q.."]
 ]
 解释: 4 皇后问题存在两个不同的解法。
- 
+
 
 提示：
 
@@ -41,7 +41,15 @@ n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，�
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 func main() {
-	fmt.Println(solveNQueens(4))
+	queens := solveNQueens(3)
+	for i := range queens {
+		q := queens[i]
+		for i2 := range q {
+			fmt.Println(q[i2])
+
+		}
+		fmt.Println("========")
+	}
 }
 func solveNQueens(n int) [][]string {
 	var result [][]string

@@ -2,37 +2,51 @@ package main
 
 import (
 	"fmt"
-	"io"
-	"log"
-	"net"
-	"time"
+	"runtime"
+	"strconv"
+	"sync"
 )
 
 func main() {
-	listener, err := net.Listen("tcp", "localhost:8000")
-	if err != nil {
-		log.Fatal(err)
+
+	runtime.GOMAXPROCS(1)
+	var group sync.WaitGroup
+
+	for i := 0; i < 5; i++ {
+		group.Add(1)
+		go func(i int) {
+			fmt.Println(" i " + strconv.Itoa(i))
+			group.Done()
+		}(i)
 	}
-	for {
-		conn, err := listener.Accept()
-		if err != nil {
-			log.Print(err) // e.g., connection aborted
-			continue
-		}
-		handleConn(conn) // handle one connection at a time
-	}
+	group.Wait()
 }
-func handleConn(c net.Conn) {
-	defer c.Close()
-	for {
-		_, err := io.WriteString(c, time.Now().Format("15:04:05\n"))
-		if err != nil {
-			fmt.Println(err)
-			return // e.g., client disconnected
-		}
-		time.Sleep(1 * time.Second)
-	}
-}
+
+//funcR main() {
+//	listener, err := net.Listen("tcp", "localhost:8000")
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	for {
+//		conn, err := listener.Accept()
+//		if err != nil {
+//			log.Print(err) // e.g., connection aborted
+//			continue
+//		}
+//		handleConn(conn) // handle one connection at a time
+//	}
+//}
+//func handleConn(c net.Conn) {
+//	defer c.Close()
+//	for {
+//		_, err := io.WriteString(c, time.Now().Format("15:04:05\n"))
+//		if err != nil {
+//			fmt.Println(err)
+//			return // e.g., client disconnected
+//		}
+//		time.Sleep(1 * time.Second)
+//	}
+//}
 
 /*func main() {
 	go spinner(200 * time.Millisecond)

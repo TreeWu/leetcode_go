@@ -29,7 +29,8 @@ import "fmt"
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
-/**
+/*
+*
 解题思路  双指针
 
 因为 利润一定是 后面的 减前面的，所以可以定义两个指针，left ,right ，right-left 即为 利润
@@ -68,14 +69,12 @@ func maxProfit2(prices []int) int {
 	if len(prices) < 1 {
 		return 0
 	}
-
 	max := func(x, y int) int {
 		if x > y {
 			return x
 		}
 		return y
 	}
-
 	ans := 0
 	min := prices[0]
 	for index := 0; index < len(prices); index++ {
@@ -84,6 +83,5 @@ func maxProfit2(prices []int) int {
 		}
 		ans = max(ans, prices[index]-min)
 	}
-
 	return ans
 }

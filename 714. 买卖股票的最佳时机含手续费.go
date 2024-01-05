@@ -1,6 +1,7 @@
 package main
 
-/**
+/*
+*
 714. 买卖股票的最佳时机含手续费
 给定一个整数数组 prices，其中第 i 个元素代表了第 i 天的股票价格 ；非负整数 fee 代表了交易股票的手续费用。
 
@@ -25,16 +26,11 @@ package main
 0 < prices.length <= 50000.
 0 < prices[i] < 50000.
 0 <= fee < 50000.
- */
+*/
 func main() {
-
 }
 
-
 func maxProfit(prices []int, fee int) int {
-	res:=0
-
-
+	res := 0
 	return res
-
 }

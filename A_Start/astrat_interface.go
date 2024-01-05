@@ -1,26 +1,36 @@
-package main
+package astart
 
 import (
 	"container/heap"
 )
 
-type AStartNodeInterface interface {
-	FindNeighbors() []AStartNodeInterface
-	SetParent(AStartNodeInterface)
-	Parent() AStartNodeInterface
+type AStartNode interface {
+	FindNeighbors() []AStartNode
+	SetParent(AStartNode)
+	Parent() AStartNode
 	G() float64
 	H() float64
 	SetG(float64)
 	SetH(float64)
-	Equal(AStartNodeInterface) bool
-	NeighborCost(AStartNodeInterface) float64
-	Heuristic(AStartNodeInterface) float64
+	Equal(AStartNode) bool
+	NeighborCost(AStartNode) float64
+	Heuristic(AStartNode) float64
 	F() float64
 	PrintSolution()
 }
 
 type DefaultNode struct {
 	g, h, f float64
+}
+
+type AStartPriorityQueue []AStartNode
+
+type AStartSolution struct {
+	StartNode, TargetNode AStartNode
+	OpenList              *AStartPriorityQueue
+	InCloseList           func(AStartNode) bool
+	PutToCloseList        func(AStartNode)
+	OnNodeComputer        func(AStartNode)
 }
 
 func (d DefaultNode) G() float64 {
@@ -43,14 +53,12 @@ func (d DefaultNode) F() float64 {
 	return d.g + d.h
 }
 
-type AStartPriorityQueue []AStartNodeInterface
-
 func (A AStartPriorityQueue) Len() int {
 	return len(A)
 }
 
 func (A AStartPriorityQueue) Less(i, j int) bool {
-	return A[i].G()+A[i].H() < A[j].G()+A[j].H()
+	return A[i].F() < A[j].F()
 }
 
 func (A AStartPriorityQueue) Swap(i, j int) {
@@ -58,7 +66,7 @@ func (A AStartPriorityQueue) Swap(i, j int) {
 }
 
 func (A *AStartPriorityQueue) Push(x any) {
-	*A = append(*A, x.(AStartNodeInterface))
+	*A = append(*A, x.(AStartNode))
 }
 
 func (A *AStartPriorityQueue) Pop() any {
@@ -66,7 +74,7 @@ func (A *AStartPriorityQueue) Pop() any {
 	*A = (*A)[:len(*A)-1]
 	return x
 }
-func (A *AStartPriorityQueue) FindNode(node AStartNodeInterface) (AStartNodeInterface, int) {
+func (A *AStartPriorityQueue) FindNode(node AStartNode) (AStartNode, int) {
 	for index, n := range *A {
 		if node.Equal(n) {
 			return n, index
@@ -77,14 +85,7 @@ func (A *AStartPriorityQueue) FindNode(node AStartNodeInterface) (AStartNodeInte
 
 var _ heap.Interface = &AStartPriorityQueue{}
 
-type AStartSolution struct {
-	StartNode, TargetNode AStartNodeInterface
-	OpenList              *AStartPriorityQueue
-	InCloseList           func(AStartNodeInterface) bool
-	PutToCloseList        func(AStartNodeInterface)
-}
-
-func (a AStartSolution) Solution() (AStartNodeInterface, bool) {
+func (a AStartSolution) Solution() (AStartNode, bool) {
 	if a.OpenList == nil {
 		a.OpenList = &AStartPriorityQueue{}
 	}
@@ -94,7 +95,10 @@ func (a AStartSolution) Solution() (AStartNodeInterface, bool) {
 	heap.Init(a.OpenList)
 	heap.Push(a.OpenList, a.StartNode)
 	for a.OpenList.Len() != 0 {
-		current := heap.Pop(a.OpenList).(AStartNodeInterface)
+		current := heap.Pop(a.OpenList).(AStartNode)
+		if a.OnNodeComputer != nil {
+			a.OnNodeComputer(current)
+		}
 		if current.Equal(a.TargetNode) {
 			return current, true
 		}

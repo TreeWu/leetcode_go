@@ -11,7 +11,7 @@ type Q struct {
 
 func appendSlice(slice **[]int) {
 	fmt.Println(slice)
-	tmp := append(**slice, (**slice)...)
+	tmp := append(**slice, **slice...)
 	t := &tmp
 	slice = &t
 	fmt.Println(slice)

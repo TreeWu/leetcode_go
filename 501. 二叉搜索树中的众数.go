@@ -2,7 +2,8 @@ package main
 
 import "fmt"
 
-/**
+/*
+*
 501. 二叉搜索树中的众数
 给定一个有相同值的二叉搜索树（BST），找出 BST 中的所有众数（出现频率最高的元素）。
 
@@ -14,11 +15,12 @@ import "fmt"
 例如：
 给定 BST [1,null,2,2],
 
-   1
-    \
-     2
-    /
-   2
+	1
+	 \
+	  2
+	 /
+	2
+
 返回[2].
 
 提示：如果众数超过1个，不需考虑输出顺序
@@ -50,7 +52,7 @@ func main() {
 		curMax := 0
 		preNum := 0
 
-		for i, _ := range arr {
+		for i := range arr {
 
 			if arr[i] == preNum {
 				curMax++

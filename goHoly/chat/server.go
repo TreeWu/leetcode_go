@@ -26,8 +26,6 @@ func broadcaster() {
 		case cli := <-entering: //在步骤③中，新的客户端接入的消息通道，会通过entering传送到这里   ⑤
 			clients[cli] = true
 		case cli := <-leaving:
-
-
 			delete(clients, cli)
 			close(cli)
 		}

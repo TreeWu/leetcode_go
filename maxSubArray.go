@@ -24,7 +24,7 @@ import (
 func MaxSubArray(nums []int) int {
 	ans := nums[0]
 	sum := nums[0]
-	for index, _ := range nums {
+	for index := range nums {
 		if sum > 0 {
 			sum += nums[index]
 		} else {

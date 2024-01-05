@@ -11,7 +11,7 @@ func main() {
 
 	fmt.Println(stus)
 	s1 := Stu{"tom"}
-	if v, ok := (*stus)["tom"]; !ok {   //new出来的map 可以取值，不过一直都是false
+	if v, ok := (*stus)["tom"]; !ok { //new出来的map 可以取值，不过一直都是false
 		fmt.Println(v)
 	}
 	(*stus)["tom"] = s1 //new出来的map不能赋值
@@ -26,7 +26,7 @@ func exec(name string, vs ...query) string {
 		fmt.Println(i)
 		ch <- vs[i](name)
 	}
-	for i, _ := range vs {
+	for i := range vs {
 		go fn(i)
 	}
 	return <-ch

@@ -42,7 +42,7 @@ func findLongestWord(s string, dictionary []string) string {
 
 	ans := -1
 	maxLen := -1
-	for i, _ := range dictionary {
+	for i := range dictionary {
 		s2 := dictionary[i]
 		sIndex, dIndex := 0, 0
 		for sIndex < len(s) && dIndex < len(s2) {

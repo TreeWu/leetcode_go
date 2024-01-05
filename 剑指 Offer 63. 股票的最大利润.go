@@ -29,7 +29,8 @@ import "fmt"
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
-/**
+/*
+*
 解题思路  双指针
 
 因为 利润一定是 后面的 减前面的，所以可以定义两个指针，left ,right ，right-left 即为 利润
@@ -41,6 +42,7 @@ func main() {
 	fmt.Println(maxProfit2([]int{7, 6, 4, 3, 1}))
 }
 func maxProfit0(prices []int) int {
+	fmt.Scan()
 	if len(prices) < 1 {
 		return 0
 	}

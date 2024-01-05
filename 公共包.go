@@ -38,6 +38,15 @@ func Println(head *ListNode) {
 	}
 	fmt.Println()
 }
+func (head *ListNode) Println() {
+	cur := head
+	for cur != nil {
+		fmt.Print(cur.Val)
+		fmt.Print(" -> ")
+		cur = cur.Next
+	}
+	fmt.Println()
+}
 
 func (s *Stack) peek() (interface{}, error) {
 	if s.Head == nil {
@@ -54,6 +63,16 @@ func generateListNode(size int) *ListNode {
 		tmp = tmp.Next
 	}
 	return head
+}
+
+func ListNodeFromArray(array ...int) *ListNode {
+	head := &ListNode{}
+	pre := head
+	for i := range array {
+		pre.Next = &ListNode{Val: array[i]}
+		pre = pre.Next
+	}
+	return head.Next
 }
 
 type TreeNode struct {

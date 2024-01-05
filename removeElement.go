@@ -27,12 +27,13 @@ import "fmt"
 你不需要考虑数组中超出新长度后面的元素。
 */
 
-/**
+/*
+*
 双指针，快指针遍历数组，慢指针在快指针元素不等于 查找  元素时，更新
 */
 func removeElement(nums []int, val int) int {
 	i := 0
-	for j, _ := range nums {
+	for j := range nums {
 		if nums[j] != val {
 			nums[i] = nums[j]
 			i++

@@ -61,12 +61,12 @@ func main() {
 		leftPreMap := make(map[int]interface{})
 
 		//反过来需要在前序遍历中，抽出分别属于 left ，right 的前序遍历顺序
-		for i, _ := range leftIn {
+		for i := range leftIn {
 			leftPreMap[leftIn[i]] = nil
 		}
 		var leftPre []int
 		var rightPre []int
-		for i, _ := range preorder {
+		for i := range preorder {
 			// 因为元素都不一样，所以直接排除 头元素即可
 			if preorder[i] == head.Val {
 				continue

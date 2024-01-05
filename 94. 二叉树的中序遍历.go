@@ -1,9 +1,7 @@
 package main
 
 import (
-	"container/list"
 	"fmt"
-	"math"
 )
 
 func main() {
@@ -42,27 +40,39 @@ func main() {
 }
 
 /**
-给定一个二叉树，返回它的中序 遍历。
+给定一个二叉树，返回它的中序遍历。
 
 示例:
 
 输入: [1,null,2,3]
-   1
-    \
-     2
-    /
-   3
-
+	      1
+ 		 /   \
+		3    2
+       /\
+      4 5
 输出: [1,3,2]
 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
 */
 
+// 利用栈来解决二叉树的中序遍历  左根右
+// 解决方式
 func inorderTraversal(root *TreeNode) []int {
 	var res []int
-
-	l := list.New()
-
-
+	if root == nil {
+		return res
+	}
+	stock := []*TreeNode{}
+	cur := root
+	for cur != nil || len(stock) != 0 {
+		for cur != nil {
+			stock = append(stock, cur)
+			cur = cur.Left
+		}
+		cur = stock[len(stock)-1]
+		stock = stock[:len(stock)-1]
+		res = append(res, cur.Val)
+		cur = cur.Right
+	}
 
 	return res
 }

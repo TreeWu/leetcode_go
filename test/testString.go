@@ -2,12 +2,12 @@ package main
 
 import "fmt"
 
-func main()  {
+func main() {
 
-	var arr *[]int =new([]int)
+	var arr = new([]int)
 
-	ints := append((*arr), 0)
-	fmt.Printf("%T,%v",arr,arr)
+	ints := append(*arr, 0)
+	fmt.Printf("%T,%v", arr, arr)
 
-	fmt.Printf("%T,%v",ints,ints)
+	fmt.Printf("%T,%v", ints, ints)
 }

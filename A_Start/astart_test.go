@@ -52,7 +52,7 @@ func TestAStartInterface(t *testing.T) {
 		},
 		OnNodeComputer: func(node AStartNode) {
 			current := node.(*MapAStartNode)
-			t.Log(current.X, current.Y)
+			t.Log(current.X, current.Y, current.F(), current.G(), current.H())
 		},
 	}
 	nodeInterface, b := solution.Solution()

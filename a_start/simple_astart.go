@@ -2,6 +2,7 @@ package astart
 
 import (
 	"container/heap"
+	"math"
 )
 
 type AStartNode interface {
@@ -50,7 +51,7 @@ func (d *DefaultNode) SetH(h float64) {
 }
 
 func (d *DefaultNode) F() float64 {
-	return d.g + d.h
+	return math.Max(d.g+d.h, math.MaxFloat64)
 }
 
 func (A *AStartPriorityQueue) Len() int {

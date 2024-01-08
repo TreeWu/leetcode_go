@@ -11,16 +11,15 @@ func TestPlaneTicketNode(t *testing.T) {
 	maps["重庆"] = &PlaneTicketNode{Airport: "重庆"}
 
 	maps["北京"].SetCost(maps["天津"], 100)
-	maps["北京"].SetCost(maps["河南"], 110)
-	maps["北京"].SetCost(maps["深圳"], 1000)
+	maps["北京"].SetCost(maps["河南"], 100)
 
-	maps["天津"].SetCost(maps["深圳"], 200)
+	maps["天津"].SetCost(maps["深圳"], 40)
 	maps["天津"].SetCost(maps["河南"], 100)
 
 	maps["河南"].SetCost(maps["深圳"], 100)
 	maps["河南"].SetCost(maps["重庆"], 100)
 
-	maps["深圳"].SetCost(maps["重庆"], 100)
+	maps["深圳"].SetCost(maps["重庆"], 40)
 
 	closeList := make(map[string]struct{})
 

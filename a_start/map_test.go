@@ -4,34 +4,7 @@ import (
 	"testing"
 )
 
-func TestAStartSolution_Solution(t *testing.T) {
-
-	astart := Solution{
-		StartX:       0,
-		StartY:       0,
-		TargetX:      1,
-		TargetY:      4,
-		OpenList:     nil,
-		CloseList:    nil,
-		Heuristic:    ManhattanDistance(),
-		FindNeighbor: FindNeighborFour(),
-		NeighborCost: ManhattanNeighborCost(),
-	}
-
-	solution, b := astart.Solution()
-	if b {
-		way := make([][]int, 0)
-		for solution != nil {
-			way = append(way, []int{solution.X, solution.Y})
-			solution = solution.Parent
-		}
-		t.Log(way)
-		return
-	}
-	t.Log("找不到路径")
-}
-
-func TestAStartInterface(t *testing.T) {
+func TestMapInterface(t *testing.T) {
 	closeList := make(map[int]map[int]bool)
 	solution := AStartSolution{
 		StartNode:  &MapAStartNode{X: 0, Y: 0},

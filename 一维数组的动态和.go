@@ -28,7 +28,7 @@ import "fmt"
 提示：
 
 1 <= nums.length <= 1000
--10^6 <= nums[i] <= 10^6
+-10^6<= nums[i] <=10^6
 */
 
 func main() {

@@ -6,52 +6,27 @@ import (
 )
 
 func main() {
-
+	count := 100
 	group := sync.WaitGroup{}
-	group.Add(300)
+	group.Add(3)
 
-	a2b, b2c, c2a := make(chan interface{}), make(chan interface{}), make(chan interface{})
+	a, b, c := make(chan interface{}), make(chan interface{}), make(chan interface{})
 
-	a := func() {
-		i := 1
-		for {
-			select {
-			case <-c2a:
-				fmt.Println("A", i)
-				i++
-				group.Done()
-				a2b <- new(interface{})
+	p := func(s string, waitC, notifyC chan interface{}) {
+		defer group.Done()
+		for i := 1; i <= count; i++ {
+			<-waitC // 等待自己的信号
+			fmt.Printf("%s%d ", s, i)
+			if i < count || s != "C" { // 防止最后一次循环后还发送信号
+				notifyC <- struct{}{}
 			}
 		}
 	}
-	b := func() {
-		i := 1
-		for {
-			select {
-			case <-a2b:
-				fmt.Println("B", i)
-				i++
-				group.Done()
-				b2c <- new(interface{})
-			}
-		}
-	}
-	c := func() {
-		i := 1
-		for {
-			select {
-			case <-b2c:
-				fmt.Println("C", i)
-				i++
-				group.Done()
-				c2a <- new(interface{})
-			}
-		}
-	}
-	go a()
-	go b()
-	go c()
-	c2a <- new(interface{})
+	go p("A", a, b)
+	go p("B", b, c)
+	go p("C", c, a)
+
+	a <- new(interface{})
 
 	group.Wait()
 }

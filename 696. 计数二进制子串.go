@@ -2,8 +2,9 @@ package main
 
 import "fmt"
 
-/**
-给定一个字符串 s，计算具有相同数量0和1的非空(连续)子字符串的数量，并且这些子字符串中的所有0和所有1都是组合在一起的。
+/*
+*
+给定一个字符串s，计算具有相同数量0和1的非空(连续)子字符串的数量，并且这些子字符串中的所有0和所有1都是组合在一起的。
 
 重复出现的子串要计算它们出现的次数。
 
@@ -23,8 +24,8 @@ import "fmt"
 解释: 有4个子串：“10”，“01”，“10”，“01”，它们具有相同数量的连续1和0。
 注意：
 
-s.length 在1到50,000之间。
-s 只包含“0”或“1”字符。
+s.length在1到50,000之间。
+s只包含“0”或“1”字符。
 
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/count-binary-substrings
@@ -72,7 +73,8 @@ func countBinarySubstrings(s string) int {
 	return ans
 }
 
-/**
+/*
+*
 进阶解法，因为统计数组每个数只需要和前面的数做比较，所以只需要记住上一个 字符 的连续数 和当前字符的连续数就行了
 */
 func countBinarySubstrings2(s string) int {

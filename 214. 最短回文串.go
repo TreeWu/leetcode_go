@@ -2,10 +2,11 @@ package main
 
 import "fmt"
 
-/**
+/*
+*
 给定一个字符串 s，你可以通过在字符串前面添加字符将其转换为回文串。找到并返回可以用这种方式转换的最短回文串。
 
-示例 1:
+示例1:
 
 输入: "aacecaaa"
 输出: "aaacecaaa"
@@ -24,7 +25,8 @@ func main() {
 	fmt.Println(shortestPalindrome("abcd"))
 }
 
-/**
+/*
+*
 先找到以字符开头的最长回文字符，然后将剩余的部分倒叙插入字符串开头
 */
 func shortestPalindrome(s string) string {

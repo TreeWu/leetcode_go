@@ -11,7 +11,7 @@ import (
 
 
 例如:
-给定二叉树: [3,9,20,null,null,15,7],
+给定二叉树:[3,9,20,null,null,15,7],
 
     3
    / \
@@ -39,7 +39,6 @@ import (
 从左往右，把元素放入到链表中，然后从链头开始打印即可
 
 也就是   广度优先   遍历
-
 */
 func main() {
 
@@ -92,10 +91,10 @@ func main() {
 			stock.Remove(front)
 			node := front.Value.(*TreeNode)
 			result = append(result, node.Val)
-			if node.Left!=nil {
+			if node.Left != nil {
 				stock.PushBack(node.Left)
 			}
-			if node.Right!=nil {
+			if node.Right != nil {
 				stock.PushBack(node.Right)
 			}
 		}
